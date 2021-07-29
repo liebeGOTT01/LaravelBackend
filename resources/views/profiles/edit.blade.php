@@ -44,16 +44,16 @@
             </div>
 
             <div class="form-group row">
-                <label for="">URL/website</label>
+                <label for="">URL</label>
                 <input
                     type="text"
-                    id="url/website"
-                    class="form-control @error('url/website') is-invalid @enderror"
-                    name="url/website"
-                    value="{{ old('url/website') ?? $user->profile->url }}"
-                    autocomplete="url/website" autofocus>
+                    id="url"
+                    class="form-control @error('url') is-invalid @enderror"
+                    name="url"
+                    value="{{ old('url') ?? $user->profile->url }}"
+                    autocomplete="url" autofocus>
 
-                    @error('url/website')
+                    @error('url')
                         <div class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </div>
@@ -61,7 +61,7 @@
             </div>
 
             <div class="row">
-                <label for="image"> Post Image </label>
+                <label for="image"> Find Image </label>
                 <input type="file" name="image" id="image" class="form-control-file">
             </div>
                 @error('image')
