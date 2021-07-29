@@ -9,15 +9,16 @@ use Intervention\Image\Facades\Image;
 
 class ProfilesController extends Controller
 {
-    public function index($user)
+    public function index(User $user)
     {
         //dd($user);
         // return view('home',[
             //     'user' => $user
             // ]);
 
-        $user = User::findOrFail($user);
-        return view("profiles.index",compact('user'));
+        //$user = User::findOrFail($user);
+        $follows = (auth()->user())? auth()->user()->following->contains($user->id) : false;
+        return view("profiles.index",compact('user', 'follows'));
     }
 
     public function edit(User $user)
@@ -40,9 +41,9 @@ class ProfilesController extends Controller
 
         if(request('image'))
         {
-            $imagePath = request('image')->store('uploads','public');
+            $imagePath = request('image')->store('profile','public');
 
-            $image = Image::make(public_path("storage/{$imagePath}")) -> resize(1200,1200);
+            $image = Image::make(public_path("storage/{$imagePath}")) -> resize(1000,1000);
             $image->save();
             $imageArray = ['image' => $imagePath];
         }

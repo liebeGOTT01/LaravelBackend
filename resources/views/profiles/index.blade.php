@@ -5,14 +5,15 @@
 
     <div class="row">
         <div class="col-3 p-5">
-            <img src="/storage/{{ $user->profile->image}}" alt="logo" class="w-100 rounded-circle">
+            <img src="{{ $user->profile->profileImage() }}" alt="logo" class="w-100 rounded-circle">
         </div>
         <div class="col-9 p-5">
-
             <div class="d-flex justify-content-between align-items-baseline">
                 <div class="d-flex align-items-center pb-4">
                     <!-- double curly braces is also called mustache syntax usually used as a react js developer -->
                     <h1>{{ $user->username }}<h1>
+                        <br>
+                    <follow-button user-id="{{ $user->id }}" follows='{{ $follows }}'></follow-button>
                 </div>
 
                 @can('update',$user->profile)
@@ -26,8 +27,8 @@
 
             <div class="d-flex">
                 <div class="pr-5"><strong>{{ $user->posts->count() }}</strong>posts</div>
-                <div class="pr-5"><strong>24K</strong>followers</div>
-                <div class="pr-5"><strong>300</strong>following</div>
+                <div class="pr-5"><strong>{{ $user->profile->followers->count() }}</strong>followers</div>
+                <div class="pr-5"><strong>{{ $user->following->count() }}</strong>following</div>
             </div>
 
             <div class="pt-4 font-weight-bold">{{ $user->profile->title }}</div>
@@ -47,22 +48,5 @@
      @endforeach
 
     </div>
-    <!-- <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
-        </div>
-    </div> -->
 </div>
 @endsection
