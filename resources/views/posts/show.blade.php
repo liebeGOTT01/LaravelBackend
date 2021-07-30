@@ -20,8 +20,25 @@
             </div>
             <hr>
             <p>
-            <a href="/profile/{{$post->user->id}}"> <span class="text-dark font-weight-bold">{{$post->user->username}}</span> </a>
-                <span class="text-dark"> : {{$post->caption}}</span></p>
+                <a href="/profile/{{$post->user->id}}"> <span class="text-dark font-weight-bold">{{$post->user->username}}</span> </a>
+                <span class="text-dark"> : {{$post->caption}}</span>
+            </p>
+
+            <br>
+            <h4>Display Comments</h4>
+
+                    <hr />
+                    <h4>Add comment</h4>
+                    <form action="" method="post"></form>
+                        @csrf
+                        <div class="form-group">
+                            <textarea class="form-control" name="body"></textarea>
+                            <input type="hidden" name="post_id" value="{{ $post->id }}" />
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-success" value="Add Comment" />
+                        </div>
+                    </form>
         </div>
     </div>
 </div>
