@@ -11,6 +11,8 @@
             <span class="text-dark"> : {{$post->caption}}</span>
             <hr>
             <img src="/storage/{{ $post->image }}" alt="" class="w-100">
+            <a href="/p/{{$post->id}}"><button class="btn btn-primary">View Post</button></a>
+
         </div>
     </div>
     @endforeach
